@@ -76,9 +76,9 @@ public class MainPage {
         return books;
     }
 
-    public boolean check(String title, List<Book> books){
-        for(Book book : books){
-            if (book.getTitle().equalsIgnoreCase(title)) {
+    public boolean check(Book book, List<Book> books){
+        for(Book b : books){
+            if (b.equals(book)) {
                 return true;
             }
         }

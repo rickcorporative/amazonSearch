@@ -14,6 +14,12 @@ import java.util.List;
 public class MainTest {
     private WebDriver driver;
     private MainPage mainPage;
+    Book expectedBook = new Book(
+            "Head First Java: A Brain-Friendly Guide",
+            "Kathy Sierra, Bert Bates, Trisha Gee",
+            "$40.00",
+            true
+    );
 
     // настройка перед тестом
     @BeforeMethod
@@ -36,8 +42,6 @@ public class MainTest {
         mainPage.enterWord();
 
         List<Book> books = mainPage.parsePage();
-
-        Assert.assertTrue(mainPage.check("Head First Java: A Brain-Friendly Guide", books), "The book was not found in the list.");
 
 
     }

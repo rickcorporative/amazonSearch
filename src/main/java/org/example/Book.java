@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Objects;
+
 public class Book {
     private String title;
     private String author;
@@ -21,6 +23,17 @@ public class Book {
                 ", price='" + price + '\'' +
                 ", isBestSeller=" + isBestSeller +
                 '}';
+    }
+
+
+    @Override
+    public boolean equals(Object obj){
+        if(this == obj) return true;
+        Book book = (Book) obj;
+        return Objects.equals(title, book.title) &&
+                Objects.equals(author, book.author) &&
+                Objects.equals(price, book.price) &&
+                isBestSeller == book.isBestSeller;
     }
 
     public String getTitle() { return title; }
