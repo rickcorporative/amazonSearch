@@ -76,13 +76,6 @@ public class MainPage {
         return books;
     }
 
-    public boolean check(Book book, List<Book> books){
-        for(Book b : books){
-            if (b.equals(book)) {
-                return true;
-            }
-        }
-        return false;
-    }
+
 
 }

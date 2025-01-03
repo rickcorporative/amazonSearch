@@ -4,22 +4,19 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.Assert;
 
 import java.util.List;
 
 public class MainTest {
     private WebDriver driver;
     private MainPage mainPage;
-    Book expectedBook = new Book(
-            "Head First Java: A Brain-Friendly Guide",
-            "Kathy Sierra, Bert Bates, Trisha Gee",
-            "$40.00",
-            true
-    );
+    private ExpectedBookPage expectedBookPage;
+    private Book expectedBook;
+
 
     // настройка перед тестом
     @BeforeMethod
@@ -31,6 +28,7 @@ public class MainTest {
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         mainPage = new MainPage(driver);
+        expectedBookPage = new ExpectedBookPage(driver);
     }
 
 
@@ -39,9 +37,15 @@ public class MainTest {
     public void testSearch() {
         mainPage.open();
 
+        expectedBookPage.open();
+
+        expectedBook = expectedBookPage.parseBookDetails();
+
         mainPage.enterWord();
 
         List<Book> books = mainPage.parsePage();
+
+        Assert.assertTrue(books.contains(expectedBook), "The expected book is not found in the list");
 
 
     }
