@@ -37,16 +37,19 @@ public class MainTest {
     public void testSearch() {
         mainPage.open();
 
+        mainPage.setParameter("Books");
+
+        mainPage.enterWord("Java");
+
+        mainPage.clickOnSearchBtn();
+
+        List<Book> books = mainPage.parsePage();
+
         expectedBookPage.open();
 
         expectedBook = expectedBookPage.parseBookDetails();
 
-        mainPage.enterWord();
-
-        List<Book> books = mainPage.parsePage();
-
         Assert.assertTrue(books.contains(expectedBook), "The expected book is not found in the list");
-
 
     }
     //кінець

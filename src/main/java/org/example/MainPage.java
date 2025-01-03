@@ -32,20 +32,24 @@ public class MainPage {
         driver.get("https://www.amazon.com/");
     }
 
-    public void enterWord(){
+    public void setParameter(String parameter){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement dropdown = wait.until(ExpectedConditions.visibilityOfElementLocated(selectBox));
 
         driver.findElement(searchBox).click();
 
         Select select = new Select(driver.findElement(By.id("searchDropdownBox")));
-        select.selectByVisibleText("Books");
-
-        driver.findElement(searchBox).sendKeys("Java");
-
-        driver.findElement(searchBtn).click();
-
+        select.selectByVisibleText(parameter);
     }
+
+    public void enterWord(String word){
+        driver.findElement(searchBox).sendKeys(word);
+    }
+
+    public void clickOnSearchBtn(){
+        driver.findElement(searchBtn).click();
+    }
+
 
     public List<Book> parsePage(){
         List<Book> books = new ArrayList<>();
