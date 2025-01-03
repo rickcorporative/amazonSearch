@@ -37,11 +37,7 @@ public class MainTest {
 
         List<Book> books = mainPage.parsePage();
 
-        if(mainPage.check("Head First Java: A Brain-Friendly Guide", books)){
-            System.out.println("Yes");
-        }else{
-            System.out.println("No");
-        };
+        Assert.assertTrue(mainPage.check("Head First Java: A Brain-Friendly Guide", books), "The book was not found in the list.");
 
 
     }
