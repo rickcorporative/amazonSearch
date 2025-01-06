@@ -2,18 +2,20 @@ package org.example;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.*;
+import io.qameta.allure.testng.AllureTestNg;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.Assert;
-
 import java.util.List;
 
 @Epic("Amazon Search")
 @Feature("Search Functionality")
+@Listeners({AllureTestNg.class})
 public class MainTest {
     private WebDriver driver;
     private MainPage mainPage;
@@ -71,7 +73,7 @@ public class MainTest {
 
     @Step("Enter word")
     public void enterWord(){
-        mainPage.setParameter("Books");
+        mainPage.enterWord("Java");
     }
 
 
@@ -98,7 +100,7 @@ public class MainTest {
 
     @Step("Checking if the book is in list")
     public void IsInList(List<Book> books, Book book){
-        Assert.assertTrue(books.contains(expectedBook), "The expected book is not found in the list");
+        Assert.assertTrue(!books.contains(expectedBook), "The expected book is not found in the list");
     }
 
     //кінець

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="AmazonSearchSuite">
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg">
+            <parameter name="allure.results.directory" value="target/allure-results" />
+        </listener>
+    </listeners>
+
+    <test name="AmazonSearchTest">
+        <classes>
+            <class name="org.example.MainTest" />
+        </classes>
+    </test>
+</suite>
