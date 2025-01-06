@@ -28,8 +28,14 @@ public class MainTest {
     @Step("Setup WebDriver and initialize pages")
     public void setup(){
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("profile-directory=Default");
+        options.addArguments("--no-sandbox");
         options.addArguments("--disable-web-security");
         options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--disable-blink-features=AutomationControlled");
+        options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.178 Safari/537.36");
+        options.addArguments("--disable-features=ChromeWhatsNewUI");
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
